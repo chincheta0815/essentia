@@ -22,7 +22,7 @@ jobs:
           - x86_64_tensorflow
         include:
           - WHEEL_TYPE: aarch64
-            DOCKER_IMAGE: ghcr.io/${{ github.repository_owner }}/essentia-builds:manylinux2014_aarch64
+            DOCKER_IMAGE: ghcr.io/${{ github.repository_owner }}/manylinux2014_aarch64:latest
             AARCH64: _aarch64
           - WHEEL_TYPE: i686
             DOCKER_IMAGE: mtgupf/essentia-builds:manylinux2014_i686
@@ -35,7 +35,7 @@ jobs:
 
     env:
       AARCH64: ${{ matrix.AARCH64 }}
-      DOCKER_IMAGE: ${{ matrix.DOCKER_IMAGE }}:latest
+      DOCKER_IMAGE: ${{ matrix.DOCKER_IMAGE }}
       WITH_TENSORFLOW: ${{ matrix.WITH_TENSORFLOW }}
       PRE_CMD: ${{ matrix.PRE_CMD }}
 
