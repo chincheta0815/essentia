@@ -39,16 +39,15 @@ jobs:
         with:
           python-version: 3.8
 
-      - name: Build wheels in a Docker image
-        uses: addnab/docker-run-action@v3
+      - name: Login to GHCR
+        uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
-          password: ${{ secrets.ACCESS_TOKEN }}
-          image: $DOCKER_IMAGE
-          options: --rm -v `pwd`:/io --env WITH_TENSORFLOW=$WITH_TENSORFLOW
-          run: |
-              $PRE_CMD /io/travis/build_wheels$AARCH64.sh
+          password: ${{ secrets.ghcr_PERSONAL_ACCESS_TOKEN }}
+
+      - name: Build wheels in a Docker image
+        run: docker pull $DOCKER_IMAGE
 
       - name: Build sdist
         run: | 
