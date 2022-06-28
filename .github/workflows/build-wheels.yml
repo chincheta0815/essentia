@@ -41,7 +41,7 @@ jobs:
           password: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Build wheels in a Docker image
-        run: docker image ls --all
+        run: docker image ls --all ghcr.io/${{ github.repository_owner }}
 
       - name: Build sdist
         run: | 
