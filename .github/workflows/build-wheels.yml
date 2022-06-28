@@ -41,7 +41,9 @@ jobs:
           password: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Build wheels in a Docker image
-        run: docker pull ghcr.io/${{ github.repository_owner }}/$DOCKER_IMAGE
+        run: |
+            docker images  
+            docker pull ghcr.io/${{ github.repository_owner }}/$DOCKER_IMAGE
 
       - name: Build sdist
         run: | 
