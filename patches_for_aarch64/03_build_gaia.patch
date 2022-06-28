@@ -4,7 +4,7 @@
  tar -xf v$GAIA_VERSION.tar.gz
  cd gaia-*/
  
-+cp ../../../patches_for_aarch64/04_gaia_wscript.patch .
++cp ../../../../patches_for_aarch64/04_gaia_wscript.patch .
 +patch -p0 < ./04_gaia_wscript.patch
 +
  python3 ./waf configure --prefix=$PREFIX
