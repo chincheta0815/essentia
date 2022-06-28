@@ -13,54 +13,51 @@ jobs:
   build-wheels:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        WHEEL_TYPE:
-          - aarch64
-          - i686
-          - x86_64
-          - x86_64_tensorflow
-        include:
-          - WHEEL_TYPE: aarch64
-            DOCKER_IMAGE: ghcr.io/${{ github.repository_owner }}/manylinux2014_aarch64:latest
-            AARCH64: _aarch64
-          - WHEEL_TYPE: i686
-            DOCKER_IMAGE: mtgupf/essentia-builds:manylinux2014_i686
-            PRE_CMD: linux32
-          - WHEEL_TYPE: x86_64
-            DOCKER_IMAGE: mtgupf/essentia-builds:manylinux2014_x86_64
-          - WHEEL_TYPE: x86_64_tensorflow
-            DOCKER_IMAGE: mtgupf/essentia-builds:manylinux2014_x86_64
-            WITH_TENSORFLOW: 1
-
     env:
-      AARCH64: ${{ matrix.AARCH64 }}
-      DOCKER_IMAGE: ${{ matrix.DOCKER_IMAGE }}
-      WITH_TENSORFLOW: ${{ matrix.WITH_TENSORFLOW }}
-      PRE_CMD: ${{ matrix.PRE_CMD }}
+      DOCKER_IMAGE: ghcr.io/${{ github.repository_owner }}/manylinux2014_aarch64:latest
+      WITH_TENSORFLOW: 
+      PRE_CMD: 
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
+
       - name: Fetch release tags from GitHub
         # Workaround for https://github.com/actions/checkout/issues/290
         run: git fetch --tags --force
+
+      - name: Setup QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
-      - name: Login to registry
-        run: echo "${{ secrets.ACCESS_TOKEN }}" | docker login ghcr.io -u ${{ github.repository_owner }}  --password-stdin
+
+      - name Login to GHCR
+        uses: docker/login-action@v2
+        with:
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Build wheels in a Docker image
-        run: |
-          docker pull $DOCKER_IMAGE > /dev/null
-          docker run --rm -v `pwd`:/io --env WITH_TENSORFLOW=$WITH_TENSORFLOW $DOCKER_IMAGE $PRE_CMD /io/travis/build_wheels$AARCH64.sh
+        uese: addnab/docker-run-action@v3
+        with:
+          image: $DOCKER_IMAGE
+          options: --rm -v `pwd`:/io --env WITH_TENSORFLOW=$WITH_TENSORFLOW
+          run: |
+              $PRE_CMD /io/travis/build_wheels$AARCH64.sh
+
       - name: Build sdist
         run: | 
           ls wheelhouse/
           sudo python setup.py sdist
+
       - name: Upload wheels and sdist
         uses: actions/upload-artifact@v2
         with:
