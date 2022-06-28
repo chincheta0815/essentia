@@ -34,6 +34,7 @@ jobs:
             WITH_TENSORFLOW: 1
 
     env:
+      AARCH64: ${{ matrix.AARCH64 }}
       DOCKER_IMAGE: ${{ matrix.DOCKER_IMAGE }} 
       WITH_TENSORFLOW: ${{ matrix.WITH_TENSORFLOW }}
       PRE_CMD: ${{ matrix.PRE_CMD }}
