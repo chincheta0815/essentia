@@ -41,7 +41,7 @@ jobs:
           password: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Build wheels in a Docker image
-        run: docker pull --platform linux/arm64 $DOCKER_IMAGE
+        run: docker image ls --all
 
       - name: Build sdist
         run: | 
