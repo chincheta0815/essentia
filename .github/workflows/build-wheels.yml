@@ -6,6 +6,9 @@ on:
   pull_request:
     branches:
       - master
+
+  workflow_dispatch:
+
 jobs:
   build-wheels:
     runs-on: ubuntu-latest
@@ -13,10 +16,14 @@ jobs:
     strategy:
       matrix:
         WHEEL_TYPE:
+          - aarch64
           - i686
           - x86_64
           - x86_64_tensorflow
         include:
+          - WHEEL_TYPE: aarch64
+            DOCKER_IMAGE: chincheta0815/essentia-builds:manylinux2014_aarch64
+            AARCH64: _aarch64
           - WHEEL_TYPE: i686
             DOCKER_IMAGE: mtgupf/essentia-builds:manylinux2014_i686
             PRE_CMD: linux32
@@ -45,7 +52,7 @@ jobs:
       - name: Build wheels in a Docker image
         run: |
           docker pull $DOCKER_IMAGE > /dev/null
-          docker run --rm -v `pwd`:/io --env WITH_TENSORFLOW=$WITH_TENSORFLOW $DOCKER_IMAGE $PRE_CMD /io/travis/build_wheels.sh
+          docker run --rm -v `pwd`:/io --env WITH_TENSORFLOW=$WITH_TENSORFLOW $DOCKER_IMAGE $PRE_CMD /io/travis/build_wheels$AARCH64.sh
       - name: Build sdist
         run: | 
           ls wheelhouse/
