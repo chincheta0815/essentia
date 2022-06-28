@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DOCKER_IMAGE: manylinux2014_aarch64:latest
+      DOCKER_IMAGE: manylinux2014_aarch64
       WITH_TENSORFLOW: 
       PRE_CMD: 
 
@@ -42,7 +42,7 @@ jobs:
 
       - name: Build wheels in a Docker image
         run: |
-            docker images  
+            docker manifest inspect --verbose ghcr.io/${{ github.repository_owner }}/$DOCKER_IMAGE
             docker run ghcr.io/${{ github.repository_owner }}/$DOCKER_IMAGE
 
       - name: Build sdist
