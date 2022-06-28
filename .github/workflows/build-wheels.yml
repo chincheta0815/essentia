@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DOCKER_IMAGE: ghcr.io/${{ github.repository_owner }}/manylinux2014_aarch64:latest
+      DOCKER_IMAGE: manylinux2014_aarch64:latest
       WITH_TENSORFLOW: 
       PRE_CMD: 
 
@@ -41,7 +41,7 @@ jobs:
           password: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Build wheels in a Docker image
-        run: docker image ls --all ghcr.io/${{ github.repository_owner }}
+        run: docker pull ghcr.io/${{ github.repository_owner }}/$DOCKER_IMAGE
 
       - name: Build sdist
         run: | 
