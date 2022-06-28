@@ -50,7 +50,7 @@ jobs:
         with:
           python-version: 3.8
       - name: Login to registry
-        run: echo "${{ secrets.ACCESS_TOKEN }}" | docker login gchr.io -u $ --password-stdin
+        run: echo "${{ secrets.ACCESS_TOKEN }}" | docker login gchr.io -u ${{ github.repository_owner }}  --password-stdin
 
       - name: Build wheels in a Docker image
         run: |
