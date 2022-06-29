@@ -37,7 +37,7 @@ else
     "${PYBIN}/python" waf configure --with-gaia --build-static --static-dependencies --with-example=streaming_extractor_music --with-static-examples ${NO_MSSE} --pkg-config-path="${PKG_CONFIG_PATH}"
 fi
 
-"${PYBIN}/python" waf
+"${PYBIN}/python" waf --verbose
 "${PYBIN}/python" waf install
 cd -
 
