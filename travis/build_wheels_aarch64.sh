@@ -25,9 +25,11 @@ PYBIN=/opt/python/cp36-cp36m/bin/
 
 cd /io
 
-echo $PKG_CONFIG_PATH
+PKG_CONFIG_PATH=/usr/local/lib64/pkgconfig
 
-exit
+ls -la /usr/local/lib64
+
+ls -la /lib64
 
 if [[ $(uname -m) == "aarch64" ]]; then
     NO_MSSE="--no-msse"
