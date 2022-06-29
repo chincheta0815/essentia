@@ -29,8 +29,8 @@ if [[ $(uname -m) == "aarch64" ]]; then
     NO_MSSE="--no-msse"
 fi
 
-ls -la /opt/rh/devtoolset-10/root/usr/libexec/gcc
-/opt/rh/devtoolset-10/root/usr/libexec/gcc/ld --verbose | grep SEARCH_DIR | tr -s ' ;' \\012
+ls -la /opt/rh/devtoolset-10/root/usr/libexec/gcc/aarch64-redhat-linux
+/opt/rh/devtoolset-10/root/usr/libexec/gcc/aarch64-redhat-linux/bin/ld --verbose | grep SEARCH_DIR | tr -s ' ;' \\012
 
 exit
 
