@@ -32,7 +32,7 @@ fi
 ls -la /opt/rh/devtoolset-10/root/usr/libexec/gcc/aarch64-redhat-linux/10
 /opt/rh/devtoolset-10/root/usr/libexec/gcc/aarch64-redhat-linux/10/ld --verbose | grep SEARCH_DIR | tr -s ' ;' \\012
 
-yum -y install glibc glibc-static
+yum -y install glibc-devel glibc-static-devel
 
 exit
 
