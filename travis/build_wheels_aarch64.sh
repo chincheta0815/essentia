@@ -30,7 +30,7 @@ if [[ $(uname -m) == "aarch64" ]]; then
 fi
 
 ls -la /opt/rh/devtoolset-10/root/usr/libexec/gcc/aarch64-redhat-linux/10
-/opt/rh/devtoolset-10/root/usr/libexec/gcc/aarch64-redhat-linux/10/bin/ld --verbose | grep SEARCH_DIR | tr -s ' ;' \\012
+/opt/rh/devtoolset-10/root/usr/libexec/gcc/aarch64-redhat-linux/10/ld --verbose | grep SEARCH_DIR | tr -s ' ;' \\012
 
 exit
 
