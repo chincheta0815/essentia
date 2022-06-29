@@ -29,11 +29,6 @@ if [[ $(uname -m) == "aarch64" ]]; then
     NO_MSSE="--no-msse"
 fi
 
-ls -la /opt/rh/devtoolset-10/root/usr/libexec/gcc/aarch64-redhat-linux/10
-/opt/rh/devtoolset-10/root/usr/libexec/gcc/aarch64-redhat-linux/10/ld --verbose | grep SEARCH_DIR | tr -s ' ;' \\012
-
-yum -y install glibc-devel glibc-static-devel
-
 exit
 
 if [[ $WITH_TENSORFLOW ]]; then
@@ -41,7 +36,7 @@ if [[ $WITH_TENSORFLOW ]]; then
     "${PYBIN}/python" waf configure --with-gaia --with-tensorflow --build-static --static-dependencies ${NO_MSSE} --pkg-config-path="${PKG_CONFIG_PATH}"
 else
     PROJECT_NAME='essentia'
-    "${PYBIN}/python" waf configure --with-gaia --build-static --static-dependencies --with-static-examples ${NO_MSSE} --pkg-config-path="${PKG_CONFIG_PATH}"
+    "${PYBIN}/python" waf configure --with-gaia --build-static --static-dependencies --with-example=streaming_extractor --with-static-examples ${NO_MSSE} --pkg-config-path="${PKG_CONFIG_PATH}"
 fi
 
 "${PYBIN}/python" waf
