@@ -32,6 +32,7 @@ fi
 echo $LD_LIBRARY_PATH
 ldconfig -p
 yum info glibc-devel
+exit
 
 if [[ $WITH_TENSORFLOW ]]; then
     PROJECT_NAME='essentia-tensorflow'
