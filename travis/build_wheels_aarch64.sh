@@ -34,7 +34,7 @@ if [[ $WITH_TENSORFLOW ]]; then
     "${PYBIN}/python" waf configure --with-gaia --with-tensorflow --build-static --static-dependencies ${NO_MSSE} --pkg-config-path="${PKG_CONFIG_PATH}"
 else
     PROJECT_NAME='essentia'
-    "${PYBIN}/python" waf configure --with-gaia --build-static --static-dependencies --with-examples ${NO_MSSE} --pkg-config-path="${PKG_CONFIG_PATH}"
+    "${PYBIN}/python" waf configure --with-gaia --build-static --static-dependencies --with-static-examples ${NO_MSSE} --pkg-config-path="${PKG_CONFIG_PATH}"
 fi
 
 "${PYBIN}/python" waf
