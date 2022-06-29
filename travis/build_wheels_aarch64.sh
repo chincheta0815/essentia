@@ -29,6 +29,12 @@ if [[ $(uname -m) == "aarch64" ]]; then
     NO_MSSE="--no-msse"
 fi
 
+ls -la /usr/lib
+
+ls /opt/rh/devtoolset-10/root/usr/
+
+exit
+
 if [[ $WITH_TENSORFLOW ]]; then
     PROJECT_NAME='essentia-tensorflow'
     "${PYBIN}/python" waf configure --with-gaia --with-tensorflow --build-static --static-dependencies ${NO_MSSE} --pkg-config-path="${PKG_CONFIG_PATH}"
