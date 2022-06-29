@@ -32,6 +32,16 @@ fi
 ls -la /opt/rh/devtoolset-10/root/usr/libexec/gcc/aarch64-redhat-linux/10
 /opt/rh/devtoolset-10/root/usr/libexec/gcc/aarch64-redhat-linux/10/ld --verbose | grep SEARCH_DIR | tr -s ' ;' \\012
 
+ls -la /opt/rh/devtoolset-10/root/usr/aarch64-redhat-linux/lib64
+ls -la /opt/rh/devtoolset-10/root/usr/lib64
+ls -la /usr/local/lib64
+ls -la /lib64
+ls -la /usr/lib64
+ls -la /opt/rh/devtoolset-10/root/usr/aarch64-redhat-linux/lib
+ls -la /usr/local/lib
+ls -la /lib
+ls -la /usr/lib
+
 exit
 
 if [[ $WITH_TENSORFLOW ]]; then
