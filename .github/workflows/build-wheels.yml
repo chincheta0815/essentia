@@ -38,7 +38,7 @@ jobs:
       - name: Build wheels in a Docker image
         run: |
             docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-            docker run --rm -v -v `pwd`:/io --env WITH_TENSORFLOW= ghcr.io/${{ github.repository_owner }}/manylinux2014_aarch64:latest $PRE_CMD /io/travis/build_wheels.sh
+            docker run --rm -v `pwd`:/io --env WITH_TENSORFLOW= ghcr.io/${{ github.repository_owner }}/manylinux2014_aarch64:latest $PRE_CMD /io/travis/build_wheels.sh
 
       - name: Build sdist
         run: | 
