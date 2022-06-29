@@ -196,8 +196,9 @@ def configure(ctx):
 
     elif sys.platform.startswith('linux'):
         # include -pthread flag because not all versions of gcc provide it automatically
-        ctx.env.CXXFLAGS += [ '-arch', 'arm64', '-pthread']
-        ctx.env.LINKFLAGS += [ '-arch', 'arm64', '-pthread']
+        ctx.env.CXXFLAGS += ['-pthread']
+        ctx.env.LINKFLAGS += ['-pthread']
+        crx.env.LDFLAGS = ['-arch', 'arm64']
 
     elif sys.platform == 'win32':
         print ("Building on win32")
