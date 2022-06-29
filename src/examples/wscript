@@ -164,7 +164,7 @@ def build(ctx):
                     if sys.platform != 'darwin':
                         # skip -static flag on OSX, otherwise it will complain because
                         # static linking to system libraries is not supported on OSX
-                        self.env.LINKFLAGS = [ '-L /lib64', '-static']
+                        self.env.LINKFLAGS = [ '-static']
                         self.env.SHLIB_MARKER = self.env.STLIB_MARKER
 
         for e in example_sources_fileio + example_sources_with_gaia + example_sources_with_tensorflow:
