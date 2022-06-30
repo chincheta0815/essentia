@@ -23,6 +23,12 @@ rm -rf /opt/python/cp35-cp35m
 # Use Python3.6. CentOS 5's native python is too old...
 PYBIN=/opt/python/cp36-cp36m/bin/
 
+ls -la /opt
+
+ls -la /opt/python
+
+python --version
+
 cd /io
 
 LD_LIBRARY_PATH=/usr/lib64:/lib64:$LD_LIBRARY_PATH
