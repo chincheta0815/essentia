@@ -22,7 +22,7 @@ rm -rf /opt/python/cp35-cp35m
 # Build static libessentia.a library
 # Use Python3.6. CentOS 5's native python is too old...
 #PYBIN=/opt/python/cp36-cp36m/bin/
-PYBIN=$(which python)/..
+PYBIN=$(which python)
 
 cd /io
 
@@ -34,14 +34,14 @@ fi
 
 if [[ $WITH_TENSORFLOW ]]; then
     PROJECT_NAME='essentia-tensorflow'
-    "${PYBIN}/python" waf configure --with-gaia --with-tensorflow --build-static --static-dependencies ${NO_MSSE} --pkg-config-path="${PKG_CONFIG_PATH}"
+    "${PYBIN}" waf configure --with-gaia --with-tensorflow --build-static --static-dependencies ${NO_MSSE} --pkg-config-path="${PKG_CONFIG_PATH}"
 else
     PROJECT_NAME='essentia'
-    "${PYBIN}/python" waf configure --with-gaia --build-static --static-dependencies --with-example=streaming_extractor_music --with-static-examples ${NO_MSSE} --pkg-config-path="${PKG_CONFIG_PATH}"
+    "${PYBIN}" waf configure --with-gaia --build-static --static-dependencies --with-example=streaming_extractor_music --with-static-examples ${NO_MSSE} --pkg-config-path="${PKG_CONFIG_PATH}"
 fi
 
-"${PYBIN}/python" waf --verbose
-"${PYBIN}/python" waf install
+"${PYBIN}" waf --verbose
+"${PYBIN}" waf install
 cd -
 
 # Compile wheels
