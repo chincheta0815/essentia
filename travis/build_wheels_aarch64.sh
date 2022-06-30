@@ -21,13 +21,8 @@ rm -rf /opt/python/cp35-cp35m
 
 # Build static libessentia.a library
 # Use Python3.6. CentOS 5's native python is too old...
-PYBIN=/opt/python/cp36-cp36m/bin/
-
-ls -la /opt
-
-ls -la /opt/python
-
-python --version
+#PYBIN=/opt/python/cp36-cp36m/bin/
+PYBIN=$(which python)
 
 cd /io
 
