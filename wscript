@@ -198,7 +198,6 @@ def configure(ctx):
         # include -pthread flag because not all versions of gcc provide it automatically
         ctx.env.CXXFLAGS += ['-pthread']
         ctx.env.LINKFLAGS += ['-pthread']
-        ctx.env.LDFLAGS = ['-Wl,-L/lib64']
 
     elif sys.platform == 'win32':
         print ("Building on win32")
